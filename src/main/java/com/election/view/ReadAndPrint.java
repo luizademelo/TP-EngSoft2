@@ -7,7 +7,6 @@ import com.election.entity.Vote;
 import com.election.entity.Voter;
 import com.election.enums.ElectionStatusEnum;
 
-
 import java.io.BufferedReader;
 import java.nio.file.Paths;
 import java.io.InputStreamReader;
@@ -26,11 +25,11 @@ public class ReadAndPrint {
     public static final Map<Integer, Candidate> CandidateMap = new HashMap<>();
     private static final Map<String, CertifiedProfessional> CertifiedMap = new HashMap<>();
     private static final BufferedReader scanner = new BufferedReader(new InputStreamReader(System.in));
-    
+
     public static void print(String output) {
         System.out.println(output);
     }
-    
+
     public static String readString() {
         try {
             return scanner.readLine();
@@ -49,16 +48,18 @@ public class ReadAndPrint {
         }
     }
 
-    public static void preElectionMenu(){
+    public static void preElectionMenu() {
         print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
         print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
         print("Escolha uma opção de turno:\n");
         print("(1) Primeiro Turno");
         print("(2) Segundo turno");
         int round = readInt();
-        if (round == 1) ElectionController.currentElection.setRound("FIRST_ROUND");
-        else if (round == 2) ElectionController.currentElection.setRound("SECOND_ROUND");
-        else{
+        if (round == 1)
+            ElectionController.currentElection.setRound("FIRST_ROUND");
+        else if (round == 2)
+            ElectionController.currentElection.setRound("SECOND_ROUND");
+        else {
             print("Opção invalida\n");
         }
     }
@@ -83,7 +84,7 @@ public class ReadAndPrint {
     }
 
     public static void loadProfessionals() {
-        try{
+        try {
             Path filePath = Paths.get("src/main/resources/certifiedProfessionals.txt");
             List<String> lines = Files.readAllLines(filePath);
             for (String line : lines) {
@@ -95,7 +96,7 @@ public class ReadAndPrint {
                                 .build());
             }
 
-        } catch (Exception e){
+        } catch (Exception e) {
             print("Erro na inicialização dos dados");
             exit(1);
         }
@@ -123,7 +124,7 @@ public class ReadAndPrint {
         return null;
     }
 
-    public static Vote readVote(){
+    public static Vote readVote() {
         print("\nInsira o número do candidato:\nEx.: 13\nOU 0 para nulo OU br para branco\n");
         String candidateNumber = readString();
         Vote vote;
@@ -150,74 +151,80 @@ public class ReadAndPrint {
         return vote = new Vote("null");
     }
 
-    public static void certifiedProfessionalMenu(){
-        int command;
+    public static void initializeElectionMenu() {
+        print("\nIniciar Sessão (1)\nSair (2)\n");
+        int command = readInt();
+        if (command == 1) {
+            ElectionController.currentElection.setStatus("RUNNING");
+            print("\nSessão iniciada com Sucesso!\n");
+        }
+    }
+
+    public static void finishElectionMenu() {
+        print("\nFinalizar Sessão (1)\nSair (2)\n");
+        int command = readInt();
+        if (command == 1) {
+            ElectionController.finishElection();
+            print("\nSessão finalizada com Sucesso!\n");
+        }
+    }
+
+    public static void showElectionResultsMenu() {
+        print("\nVer Resultados (1)\nSair (2)\n");
+        int command = readInt();
+        if (command == 1) {
+            showResults();
+        }
+    }
+
+    public static void showMenuByElectionStatus() {
+        if (ElectionController.currentElection.getStatus()
+                .equals(ElectionStatusEnum.NOT_INITIALIZED.name())) {
+            initializeElectionMenu();
+        } else if (ElectionController.currentElection.getStatus()
+                .equals(ElectionStatusEnum.RUNNING.name())) {
+            finishElectionMenu();
+        } else if (ElectionController.currentElection.getStatus()
+                .equals(ElectionStatusEnum.FINISHED.name())) {
+            showElectionResultsMenu();
+        }
+    }
+
+    public static boolean isValidProfessional(CertifiedProfessional professional, String password) {
+        return !(professional == null || !professional.getPassword().equals(password));
+    }
+
+    public static void certifiedProfessionalMenu() {
         String user, password;
         print("\nFazer login (1)\nSair (2)\n");
-        command = readInt();
-        boolean state = true;
-        if (command == 1){
-            while (state){
-                print("\nInsira o usuario:\n");
-                user = readString();
-                print("\nInsira a senha:\n");
-                password = readString();
-                CertifiedProfessional professional = CertifiedMap.get(user);
-                if (professional == null || !professional.getPassword().equals(password)){
-                    print("\nUsuario ou senha Incorretos! Digite novamente.:\n");
-                }else {
-                    if (ElectionController.currentElection.getStatus().equals(ElectionStatusEnum.NOT_INITIALIZED.name())){
-                        print("\nIniciar Sessão (1)\nSair (2)\n");
-                        command = readInt();
-                        if (command == 1 ){
-                            ElectionController.currentElection.setStatus("RUNNING");
-                            print("\nSessão iniciada com Sucesso!\n");
-                            state = false;
-                        }
-                        else if(command == 2){
-                            state = false;
-                        }
-                    }
-                    else if (ElectionController.currentElection.getStatus().equals(ElectionStatusEnum.RUNNING.name())){
-                        print("\nFinalizar Sessão (1)\nSair (2)\n");
-                        command = readInt();
-                        if (command == 1 ){
-                            ElectionController.finishElection();
-                            print("\nSessão finalizada com Sucesso!\n");
-                            state = false;
-                        }
-                        else if(command == 2){
-                            state = false;
-                        }
-                    }else if(ElectionController.currentElection.getStatus().equals(ElectionStatusEnum.FINISHED.name())){
-                        print("\nVer Resultados (1)\nSair (2)\n"); 
-                        command = readInt(); 
-                        if(command == 1){
-                            showResults();
-                            state = false;
-                        }
-                        else if(command == 2){
-                            state = false; 
-                        }
-                    }
-                }
+        int command = readInt();
+        while (command == 1) {
+            print("\nInsira o usuario:\n");
+            user = readString();
+            print("\nInsira a senha:\n");
+            password = readString();
+            CertifiedProfessional professional = CertifiedMap.get(user);
+            if (isValidProfessional(professional, password)) {
+                print("\nUsuario ou senha Incorretos! Digite novamente.:\n");
+            } else {
+                showMenuByElectionStatus();
+                break;
             }
         }
     }
 
-    public static void showResults(){
+    public static void showResults() {
         // print("Resultado da Eleicao:");
         // print("Votos validos: " + ElectionController.getValidVotes());
         // print("Votos nulos: " + ElectionController.getNullVotes());
-        // print("Votos brancos: " +  ElectionController.getWhiteVotes()); 
-        // print("\n"); 
+        // print("Votos brancos: " + ElectionController.getWhiteVotes());
+        // print("\n");
 
-        List<Candidate> winners = ElectionController.getResults(); 
-        for(Candidate candidate : winners){
-            print("O vencedor para o cargo de " + candidate.getRole() + " foi"); 
-            print(candidate.toString()); 
+        List<Candidate> winners = ElectionController.getResults();
+        for (Candidate candidate : winners) {
+            print("O vencedor para o cargo de " + candidate.getRole() + " foi");
+            print(candidate.toString());
         }
     }
-
 
 }
