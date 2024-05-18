@@ -1,4 +1,4 @@
-# Projeto da disciplina Reutilização de Software
+# Projeto da disciplina Engenharia de Software
 - Inicialmente projeto apenas com eleição presidencial em que houve a adição da possibilidade de segundo turno assim como novos tipos de eleições, sendo estendido para suportar municipais, estaduais e universitárias.
 
 ## Padrões de projeto:
