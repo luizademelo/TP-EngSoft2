@@ -48,20 +48,9 @@ public class ReadAndPrint {
         }
     }
 
-    public static void preElectionMenu() {
-        print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
-        print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
-        print("Escolha uma opção de turno:\n");
-        print("(1) Primeiro Turno");
-        print("(2) Segundo turno");
-        int round = readInt();
-        if (round == 1)
-            ElectionController.currentElection.setRound("FIRST_ROUND");
-        else if (round == 2)
-            ElectionController.currentElection.setRound("SECOND_ROUND");
-        else {
-            print("Opção invalida\n");
-        }
+    public static void loadVotersAndProfessionals(){
+        loadVoters();
+        loadProfessionals();
     }
 
     public static void loadVoters() {
