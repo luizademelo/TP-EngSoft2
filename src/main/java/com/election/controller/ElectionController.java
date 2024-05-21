@@ -28,39 +28,43 @@ public class ElectionController {
 
     public static void createElectionMenu(String electionPassword) {
         try {
-
             while (!exit) {
-                print("Selecione o tipo de eleicao desejada:\n");
-                print("(1) Presidencial");
-                print("(2) Estadual");
-                print("(3) Municipal");
-                print("(4) Universitaria");
-                print("(0) Fechar Aplicacao");
+                printElectionMenu();
                 int command = readInt();
-                switch (command) {
-                    case 1 -> {
-                        createElection(electionPassword, "Presidencial");
-                        exit = true;
-                    }
-                    case 2 -> {
-                        createElection(electionPassword, "Estadual");
-                        exit = true;
-                    }
-                    case 3 -> {
-                        createElection(electionPassword, "Municipal");
-                        exit = true;
-                    }
-                    case 4 -> {
-                        createElection(electionPassword, "Universitaria");
-                        exit = true;
-                    }
-                    case 0 -> exit(1);
+                if(command == 0)
+                    exit(1);
+
+                String electionType = getElectionType(command);
+                if(electionType == "Invalida") {
+                    print("Tipo inválido de eleição");
+                    exit(1);
                 }
+
+                createElection(electionPassword, electionType);
+                exit = true;
             }
         } catch (Exception e) {
             print("Erro inesperado");
         }
+    }
 
+    private static void printElectionMenu() {
+        print("Selecione o tipo de eleicao desejada:\n");
+        print("(1) Presidencial");
+        print("(2) Estadual");
+        print("(3) Municipal");
+        print("(4) Universitaria");
+        print("(0) Fechar Aplicacao");
+    }
+
+    private static String getElectionType(int command) {
+        return switch (command) {
+            case 1 -> "Presidencial";
+            case 2 -> "Estadual";
+            case 3 -> "Municipal";
+            case 4 -> "Universitaria";
+            default -> "Invalida";
+        };
     }
 
     private static void createElection(String electionPassword, String electionType) {
