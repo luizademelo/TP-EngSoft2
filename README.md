@@ -24,7 +24,7 @@ Após rodar a ferramenta em cima do lizard, foi feita a escolha das 3 funções 
 
 - `ReadAndPrint::certifiedProfessionalMenu@153-206@./src/main/java/com/election/view/ReadAndPrint.java` com CCN de 14.
 - `Main::main@6-57@./src/main/java/Main.java` com CCN de 9.
-- `ElectionController::createElectionMenu@29-490@./src/main/java/com/election/controller/ElectionController.java` com CCN de 5.
+- `ElectionController::createElectionMenu@29-49@./src/main/java/com/election/controller/ElectionController.java` com CCN de 5.
 
 ## Dependências
 
