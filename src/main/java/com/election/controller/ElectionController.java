@@ -31,11 +31,11 @@ public class ElectionController {
             while (!exit) {
                 printElectionMenu();
                 int command = readInt();
-                if(command == 0)
+                if (command == 0)
                     exit(1);
 
                 String electionType = getElectionType(command);
-                if(electionType == "Invalida") {
+                if (electionType == "Invalida") {
                     print("Tipo inválido de eleição");
                     exit(1);
                 }
@@ -67,7 +67,7 @@ public class ElectionController {
         };
     }
 
-    private static void createElection(String electionPassword, String electionType) {
+    public static void createElection(String electionPassword, String electionType) {
         if (electionType.equalsIgnoreCase("presidencial")) {
             currentElection = new PresidentialElection("PRESIDENTIAL");
         } else if (electionType.equalsIgnoreCase("municipal")) {
