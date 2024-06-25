@@ -10,11 +10,12 @@ import java.util.Map;
 import static com.election.controller.ElectionController.candidatesList;
 import static com.election.view.ReadAndPrint.CandidateMap;
 
-public class WeightedVoteHelper implements VoteInterfaceHelper{
+public class WeightedVoteHelper implements VoteInterfaceHelper {
     public static final int VOTE_WEIGHT = 3;
+
     @Override
     public void countVotes(List<Vote> votes) {
-        for (Map.Entry<Integer, Candidate> candidate : CandidateMap.entrySet()){
+        for (Map.Entry<Integer, Candidate> candidate : CandidateMap.entrySet()) {
             long numberOfVotesProfessors = ElectionController.voteList.stream()
                     .filter(vote -> vote.getCandidate().equals(candidate.getValue()))
                     .filter(vote -> vote.getWeight() == VOTE_WEIGHT)

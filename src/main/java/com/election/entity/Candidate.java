@@ -4,7 +4,7 @@ import com.election.enums.RoleEnum;
 
 public class Candidate {
     private final int electoralNumber;
-    private int voteCount;  
+    private int voteCount;
     private final String name;
     private final RoleEnum role;
 
@@ -13,6 +13,10 @@ public class Candidate {
         this.electoralNumber = electoralNumber;
         this.voteCount = 0;
         this.role = RoleEnum.valueOf(role);
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     public static class Builder {
@@ -29,6 +33,7 @@ public class Candidate {
             this.name = name;
             return this;
         }
+
         public Candidate.Builder role(String role) {
             this.role = role;
             return this;
@@ -47,19 +52,22 @@ public class Candidate {
                     this.role);
         }
     }
-    
-    public int getVoteCount(){
-        return this.voteCount; 
+
+    public int getVoteCount() {
+        return this.voteCount;
     }
 
-    public String getRole() {return this.role.name();}
+    public String getRole() {
+        return this.role.name();
+    }
 
-    public void setVoteCount(Integer voteCount){
+    public void setVoteCount(Integer voteCount) {
         this.voteCount = voteCount;
     }
+
     @Override
-    public String toString(){
-        return ("Candidato: " + name + " \nVotos: " + this.voteCount); 
+    public String toString() {
+        return ("Candidato: " + name + " \nVotos: " + this.voteCount);
     }
 
 }
