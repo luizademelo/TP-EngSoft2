@@ -21,7 +21,7 @@ import static java.lang.System.exit;
 
 public class ReadAndPrint {
 
-    protected static final Map<String, Voter> VoterMap = new HashMap<>();
+    public static final Map<String, Voter> VoterMap = new HashMap<>();
     public static final Map<Integer, Candidate> CandidateMap = new HashMap<>();
     private static final Map<String, CertifiedProfessional> CertifiedMap = new HashMap<>();
     private static final BufferedReader scanner = new BufferedReader(new InputStreamReader(System.in));
@@ -48,7 +48,7 @@ public class ReadAndPrint {
         }
     }
 
-    public static void loadVotersAndProfessionals(){
+    public static void loadVotersAndProfessionals() {
         loadVoters();
         loadProfessionals();
     }
