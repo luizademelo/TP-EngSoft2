@@ -16,11 +16,11 @@ public class WeightedVoteHelper implements VoteInterfaceHelper {
     @Override
     public void countVotes(List<Vote> votes) {
         for (Map.Entry<Integer, Candidate> candidate : CandidateMap.entrySet()) {
-            long numberOfVotesProfessors = ElectionController.voteList.stream()
+            long numberOfVotesProfessors = votes.stream()
                     .filter(vote -> vote.getCandidate().equals(candidate.getValue()))
                     .filter(vote -> vote.getWeight() == VOTE_WEIGHT)
                     .count();
-            long numberOfVotesOthers = ElectionController.voteList.stream()
+            long numberOfVotesOthers = votes.stream()
                     .filter(vote -> vote.getCandidate().equals(candidate.getValue()))
                     .filter(vote -> vote.getWeight() == 1)
                     .count();

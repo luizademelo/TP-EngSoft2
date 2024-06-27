@@ -23,7 +23,7 @@ public class ReadAndPrint {
 
     public static final Map<String, Voter> VoterMap = new HashMap<>();
     public static final Map<Integer, Candidate> CandidateMap = new HashMap<>();
-    private static final Map<String, CertifiedProfessional> CertifiedMap = new HashMap<>();
+    public static final Map<String, CertifiedProfessional> CertifiedMap = new HashMap<>();
     private static final BufferedReader scanner = new BufferedReader(new InputStreamReader(System.in));
 
     public static void print(String output) {
@@ -193,7 +193,7 @@ public class ReadAndPrint {
             print("\nInsira a senha:\n");
             password = readString();
             CertifiedProfessional professional = CertifiedMap.get(user);
-            if (isValidProfessional(professional, password)) {
+            if (!isValidProfessional(professional, password)) {
                 print("\nUsuario ou senha Incorretos! Digite novamente.:\n");
             } else {
                 showMenuByElectionStatus();
