@@ -8,11 +8,11 @@ import java.util.Map;
 import static com.election.controller.ElectionController.*;
 import static com.election.view.ReadAndPrint.CandidateMap;
 
-public class MajorityVoteHelper implements VoteInterfaceHelper{
+public class MajorityVoteHelper implements VoteInterfaceHelper {
     @Override
     public void countVotes(List<Vote> votes) {
-        for (Map.Entry<Integer, Candidate> candidate : CandidateMap.entrySet()){
-            long numberOfVotes = ElectionController.voteList.stream()
+        for (Map.Entry<Integer, Candidate> candidate : CandidateMap.entrySet()) {
+            long numberOfVotes = votes.stream()
                     .filter(vote -> vote.getCandidate().equals(candidate.getValue()))
                     .count();
             candidate.getValue().setVoteCount((int) numberOfVotes);
