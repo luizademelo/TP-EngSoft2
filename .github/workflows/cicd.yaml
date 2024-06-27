@@ -26,16 +26,11 @@ jobs:
           java-version: ${{ matrix.java }}
           distribution: 'adopt'
 
-      - name: Colocar pacotes Maven em cache
-        uses: actions/cache@v2
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
+      - name: Setup JUnit
+        run: make setup
 
-      - name: Build do projeto
-        run: mvn -B package --file pom.xml
+      - name: Build
+        run: make
 
-      - name: Rodar os testes
-        run: mvn test
+      - name: Test
+        run: make test
