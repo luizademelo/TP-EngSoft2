@@ -18,6 +18,7 @@ public class VoteHelperTest {
 
     @Test
     public void testMajorityVoteHelper() {
+        ElectionController.candidatesList = new ArrayList<>();
         Candidate candidate = new Candidate("Lula", 13, RoleEnum.PRESIDENT.name());
         ReadAndPrint.CandidateMap.put(13, candidate);
         List<Vote> l = new ArrayList<>();
@@ -30,6 +31,7 @@ public class VoteHelperTest {
 
     @Test
     public void testWeightedVoteHelper() {
+        ElectionController.candidatesList = new ArrayList<>();
         Candidate candidate = new Candidate("Lula", 13, RoleEnum.PRESIDENT.name());
         ReadAndPrint.CandidateMap.put(13, candidate);
         List<Vote> l = new ArrayList<>();
