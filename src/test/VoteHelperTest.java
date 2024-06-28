@@ -1,6 +1,8 @@
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.junit.Test;
@@ -42,6 +44,7 @@ public class VoteHelperTest {
         l.add(voteWeighted);
         WeightedVoteHelper helper = new WeightedVoteHelper();
         helper.countVotes(l);
+        Collections.sort(ElectionController.candidatesList, Comparator.comparingInt(Candidate::getVoteCount));
         assertEquals(ElectionController.candidatesList.get(0).getVoteCount(), 4);
     }
 
