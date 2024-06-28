@@ -24,7 +24,7 @@ public class VoteHelperTest {
         List<Vote> l = new ArrayList<>();
         l.add(new Vote("valid", candidate));
         l.add(new Vote("valid", candidate));
-        VoteInterfaceHelper helper = new MajorityVoteHelper();
+        MajorityVoteHelper helper = new MajorityVoteHelper();
         helper.countVotes(l);
         assertEquals(ElectionController.candidatesList.get(0).getVoteCount(), 2);
     }
@@ -40,7 +40,7 @@ public class VoteHelperTest {
         voteWeighted.setWeight(3);
         l.add(voteNotWeighted);
         l.add(voteWeighted);
-        VoteInterfaceHelper helper = new WeightedVoteHelper();
+        WeightedVoteHelper helper = new WeightedVoteHelper();
         helper.countVotes(l);
         assertEquals(ElectionController.candidatesList.get(0).getVoteCount(), 4);
     }
