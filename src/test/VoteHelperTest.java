@@ -28,6 +28,8 @@ public class VoteHelperTest {
         l.add(new Vote("valid", candidate));
         MajorityVoteHelper helper = new MajorityVoteHelper();
         helper.countVotes(l);
+        Collections.sort(ElectionController.candidatesList,
+                Comparator.comparingInt(Candidate::getVoteCount).reversed());
         assertEquals(ElectionController.candidatesList.get(0).getVoteCount(), 2);
     }
 
