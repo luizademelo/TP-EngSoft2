@@ -7,7 +7,6 @@ import com.election.entity.Vote;
 import java.util.List;
 import java.util.Map;
 
-import static com.election.controller.ElectionController.candidatesList;
 import static com.election.view.ReadAndPrint.CandidateMap;
 
 public class WeightedVoteHelper implements VoteInterfaceHelper {
@@ -25,7 +24,7 @@ public class WeightedVoteHelper implements VoteInterfaceHelper {
                     .filter(vote -> vote.getWeight() == 1)
                     .count();
             candidate.getValue().setVoteCount((int) (numberOfVotesOthers + (numberOfVotesProfessors * VOTE_WEIGHT)));
-            candidatesList.add(candidate.getValue());
+            ElectionController.candidatesList.add(candidate.getValue());
         }
     }
 }

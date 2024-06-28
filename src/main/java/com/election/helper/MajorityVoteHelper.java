@@ -5,7 +5,6 @@ import com.election.entity.Candidate;
 import com.election.entity.Vote;
 import java.util.List;
 import java.util.Map;
-import static com.election.controller.ElectionController.*;
 import static com.election.view.ReadAndPrint.CandidateMap;
 
 public class MajorityVoteHelper implements VoteInterfaceHelper {
@@ -16,7 +15,7 @@ public class MajorityVoteHelper implements VoteInterfaceHelper {
                     .filter(vote -> vote.getCandidate().equals(candidate.getValue()))
                     .count();
             candidate.getValue().setVoteCount((int) numberOfVotes);
-            candidatesList.add(candidate.getValue());
+            ElectionController.candidatesList.add(candidate.getValue());
         }
     }
 }
