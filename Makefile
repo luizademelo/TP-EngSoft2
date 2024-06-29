@@ -20,9 +20,9 @@ JAVA_FLAGS := -classpath $(CLASSPATH)
 MAIN_CLASS := com.election.Main
 
 # Encontrar arquivos-fonte Java recursivamente
-JAVA_FILES := $(shell find $(JAVA_DIR) -name '*.java')
+JAVA_FILES := $(dir -R $(JAVA_DIR))
 # Encontrar testes recursivamente
-TEST_FILES := $(shell find $(TEST_DIR) -name '*.java')
+TEST_FILES := $(dir -R $(TEST_DIR))
 
 .PHONY: all clean run test setup
 
