@@ -29,11 +29,11 @@ jobs:
       - name: Setup JUnit
         run: make setup
 
-      - name: Instalar dependências
-        run: mvn clean install
+      # - name: Instalar dependências
+      #   run: mvn clean install
 
       - name: Build
-        run: make
+        run: mvn clean install
 
       - name: Test
-        run: make test
+        run: mvn clean test
