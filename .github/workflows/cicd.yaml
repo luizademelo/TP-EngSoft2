@@ -29,7 +29,7 @@ jobs:
       - name: Setup JUnit
         run: make setup
 
-      -name: Instalar dependências
+      - name: Instalar dependências
         run: mvn install
 
       - name: Build
