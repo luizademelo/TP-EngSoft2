@@ -30,7 +30,7 @@ jobs:
         run: make setup
 
       - name: Instalar dependências
-        run: mvn install
+        run: mvn clean install
 
       - name: Build
         run: make
