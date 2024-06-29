@@ -20,9 +20,40 @@ JAVA_FLAGS := -classpath $(CLASSPATH)
 MAIN_CLASS := com.election.Main
 
 # Encontrar arquivos-fonte Java recursivamente
-JAVA_FILES := $(shell find $(JAVA_DIR) -regex '.*.java')
+JAVA_FILES := $(JAVA_DIR)/Main.java \
+              $(JAVA_DIR)/com/election/helper/VoteInterfaceHelper.java \
+              $(JAVA_DIR)/com/election/helper/MajorityVoteHelper.java \
+              $(JAVA_DIR)/com/election/helper/WeightedVoteHelper.java \
+              $(JAVA_DIR)/com/election/controller/MunipalElectionController.java \
+              $(JAVA_DIR)/com/election/controller/ElectionController.java \
+              $(JAVA_DIR)/com/election/controller/UDepartmentElectionController.java \
+              $(JAVA_DIR)/com/election/controller/StateElectionController.java \
+              $(JAVA_DIR)/com/election/controller/PresidentialElectionController.java \
+              $(JAVA_DIR)/com/election/view/ReadAndPrintPresidential.java \
+              $(JAVA_DIR)/com/election/view/ReadAndPrintState.java \
+              $(JAVA_DIR)/com/election/view/ReadAndPrintUDepartment.java \
+              $(JAVA_DIR)/com/election/view/ReadAndPrintMunicipal.java \
+              $(JAVA_DIR)/com/election/view/ReadAndPrint.java \
+              $(JAVA_DIR)/com/election/entity/Election.java \
+              $(JAVA_DIR)/com/election/entity/PresidentialElection.java \
+              $(JAVA_DIR)/com/election/entity/UDepartamentElection.java \
+              $(JAVA_DIR)/com/election/entity/StateElection.java \
+              $(JAVA_DIR)/com/election/entity/UVoter.java \
+              $(JAVA_DIR)/com/election/entity/Voter.java \
+              $(JAVA_DIR)/com/election/entity/Vote.java \
+              $(JAVA_DIR)/com/election/entity/MunicipalElection.java \
+              $(JAVA_DIR)/com/election/entity/Candidate.java \
+              $(JAVA_DIR)/com/election/entity/CertifiedProfessional.java \
+              $(JAVA_DIR)/com/election/enums/ElectionTypeEnum.java \
+              $(JAVA_DIR)/com/election/enums/RoleEnum.java \
+              $(JAVA_DIR)/com/election/enums/ElectionRoundEnum.java \
+              $(JAVA_DIR)/com/election/enums/ElectionStatusEnum.java \
+              $(JAVA_DIR)/com/election/enums/VoterRoleEnum.java
 # Encontrar testes recursivamente
-TEST_FILES := $(shell find $(TEST_DIR) -regex '.*.java')
+TEST_FILES := $(TEST_DIR)/VoteHelperTest.java \
+              $(TEST_DIR)/ElectionControllerTest.java \
+              $(TEST_DIR)/ElectionTest.java \
+              $(TEST_DIR)/TestReadAndPrint.java
 
 .PHONY: all clean run test setup
 
