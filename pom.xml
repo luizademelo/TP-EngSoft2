@@ -45,10 +45,10 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>urna.Urna</mainClass>
+                            <mainClass>Main</mainClass>
                         </manifest>
                     </archive>
-                    <finalName>Urna</finalName>
+                    <finalName>Election</finalName>
                     <appendAssemblyId>false</appendAssemblyId>
                 </configuration>
             </plugin>
