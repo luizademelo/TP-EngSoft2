@@ -3,8 +3,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>ufmg.Urna</groupId>
-    <artifactId>Urna</artifactId>
+    <groupId>ufmg.Main</groupId>
+    <artifactId>Main</artifactId>
     <version>1</version>
     
     <dependencies>
@@ -23,9 +23,9 @@
     </properties>
     
     <build>
-        <sourceDirectory>src</sourceDirectory>
+        <!-- <sourceDirectory>src</sourceDirectory> -->
 
-        <testSourceDirectory>tests</testSourceDirectory>
+        <!-- <testSourceDirectory>test</testSourceDirectory> -->
 
         <plugins>
             <!-- Compile and package the source code into a JAR -->
