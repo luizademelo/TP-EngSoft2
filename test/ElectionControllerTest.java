@@ -1,9 +1,7 @@
 import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
 
 import com.election.controller.ElectionController;
-import com.election.enums.ElectionTypeEnum;
 
 public class ElectionControllerTest {
 
@@ -30,5 +28,25 @@ public class ElectionControllerTest {
         ElectionController.createElection("password", "universitaria");
         assertEquals(ElectionController.currentElection.getElectionType(), "UNIVERSITY");
     }
+    
+    @Test
+    public void testGetValidVotes() {
+        ElectionController.createElection("password", "presidencial");
+        int validVotes = ElectionController.getValidVotes();
+        assertEquals(validVotes >= 0, true);
+    }
 
+    @Test
+    public void testGetNullVotes() {
+        ElectionController.createElection("password", "presidencial");
+        int nullVotes = ElectionController.getNullVotes();
+        assertEquals(nullVotes >= 0, true);
+    }
+
+    @Test
+    public void testGetWhiteVotes() {
+        ElectionController.createElection("password", "presidencial");
+        int whiteVotes = ElectionController.getWhiteVotes();
+        assertEquals(whiteVotes >= 0, true);
+    }
 }
