@@ -1,6 +1,6 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-
+import static org.junit.Assert.assertNull;
 import org.junit.Test;
 
 import com.election.entity.Candidate;
@@ -45,5 +45,28 @@ public class TestReadAndPrint {
         ReadAndPrintMunicipal.loadCandidates();
         Candidate candidate = ReadAndPrint.CandidateMap.get(55);
         assertEquals(candidate.getName(), "Kalil");
+    }
+
+    @Test
+    public void testTotalVoters() {
+        ReadAndPrint.loadVoters();
+        int totalVoters = ReadAndPrint.VoterMap.size();
+        assertEquals(totalVoters, 501); 
+    }
+
+    @Test
+    public void testLoadVotersTwice() {
+        ReadAndPrint.loadVoters();
+        int totalVoters = ReadAndPrint.VoterMap.size();
+        ReadAndPrint.loadVoters();
+        int totalVotersAfterSecondLoad = ReadAndPrint.VoterMap.size();
+        assertEquals(totalVoters, totalVotersAfterSecondLoad);
+    }
+
+    @Test
+    public void testNonExistentVoter() {
+        ReadAndPrint.loadVoters();
+        Voter voter = ReadAndPrint.VoterMap.get("nonexistent");
+        assertNull(voter);
     }
 }
