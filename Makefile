@@ -53,7 +53,8 @@ JAVA_FILES := $(JAVA_DIR)/Main.java \
 TEST_FILES := $(TEST_DIR)/VoteHelperTest.java \
               $(TEST_DIR)/ElectionControllerTest.java \
               $(TEST_DIR)/ElectionTest.java \
-              $(TEST_DIR)/TestReadAndPrint.java
+              $(TEST_DIR)/TestReadAndPrint.java \
+              $(TEST_DIR)/SecondRoundTest.java
 
 .PHONY: all clean run test setup
 
