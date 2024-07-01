@@ -87,4 +87,69 @@ public class ElectionTest {
         Candidate c = winners.get(0);
         assertEquals(c.getName(), "Pedro Olmo");
     }
+
+    @Test
+    public void testSecondRoundPresidentialElection() {
+
+        ElectionController.createElection("password", "presidencial");
+        ReadAndPrint.loadVotersAndProfessionals();
+        ElectionController.currentElection.setRound("SECOND_ROUND");
+        ReadAndPrintPresidential.loadCandidates();
+        ElectionController.currentElection.setStatus("RUNNING");
+
+        Candidate candidate1 = ReadAndPrint.CandidateMap.get(13);
+        Candidate candidate2 = ReadAndPrint.CandidateMap.get(22);
+
+        Vote vote1 = new Vote("valid", candidate1);
+        ElectionController.voteList.add(vote1);
+        Vote vote2 = new Vote("valid", candidate2);
+        ElectionController.voteList.add(vote2);
+        Vote vote3 = new Vote("valid", candidate2);
+        ElectionController.voteList.add(vote3);
+        Vote vote4 = new Vote("valid", candidate1);
+        ElectionController.voteList.add(vote4);
+        Vote vote5 = new Vote("valid", candidate1);
+        ElectionController.voteList.add(vote5);
+
+        ElectionController.finishElection();
+        List<Candidate> winners = ElectionController.getResults();
+        Candidate winner = winners.get(0);
+
+        assertEquals(winner.getName(), "Lula");
+        assertEquals(winner.getVoteCount(), 3);
+        assertEquals(winners.size(), 1);
+    }
+
+    @Test
+    public void testSecondRoundUdepartmentElection() {
+
+        ElectionController.createElection("password", "universitaria");
+        ReadAndPrint.loadVotersAndProfessionals();
+        ElectionController.currentElection.setRound("SECOND_ROUND");
+        ReadAndPrintUDepartment.loadCandidates();
+        ElectionController.currentElection.setStatus("RUNNING");
+
+        Candidate candidate1 = ReadAndPrint.CandidateMap.get(Integer.parseInt("3"));
+        Candidate candidate2 = ReadAndPrint.CandidateMap.get(Integer.parseInt("2"));
+
+        Vote vote1 = new Vote("valid", candidate2);
+        ElectionController.voteList.add(vote1);
+        Vote vote2 = new Vote("valid", candidate1);
+        ElectionController.voteList.add(vote2);
+        Vote vote3 = new Vote("valid", candidate2);
+        ElectionController.voteList.add(vote3);
+        Vote vote4 = new Vote("valid", candidate2);
+        ElectionController.voteList.add(vote4);
+        Vote vote5 = new Vote("valid", candidate2);
+        ElectionController.voteList.add(vote5);
+
+        ElectionController.finishElection();
+        List<Candidate> winners = ElectionController.getResults();
+        Candidate winner = winners.get(0);
+
+        assertEquals(winner.getName(), "Pedro Olmo");
+        assertEquals(winner.getVoteCount(), 4);
+        assertEquals(winners.size(), 1);
+
+    }
 }
