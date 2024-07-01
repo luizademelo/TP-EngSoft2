@@ -17,7 +17,7 @@ JAVA := java
 JAVA_FLAGS := -classpath $(CLASSPATH)
 
 # Nome do arquivo principal
-MAIN_CLASS := com.election.Main
+MAIN_CLASS := Main
 
 # Encontrar arquivos-fonte Java recursivamente
 JAVA_FILES := $(JAVA_DIR)/Main.java \
