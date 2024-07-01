@@ -12,7 +12,7 @@ public class MajorityVoteHelper implements VoteInterfaceHelper {
     public void countVotes(List<Vote> votes) {
         for (Map.Entry<Integer, Candidate> candidate : CandidateMap.entrySet()) {
             long numberOfVotes = votes.stream()
-                    .filter(vote -> vote.getCandidate().equals(candidate.getValue()))
+                    .filter(vote -> vote.getCandidate() != null && vote.getCandidate().equals(candidate.getValue()))
                     .count();
             candidate.getValue().setVoteCount((int) numberOfVotes);
             ElectionController.candidatesList.add(candidate.getValue());

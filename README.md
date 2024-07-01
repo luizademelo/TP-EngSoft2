@@ -53,7 +53,7 @@ No menu inicial, siga os passos abaixo:
 
 1. Selecione o tipo de eleição que você deseja.
 2. Selecione o turno em que você deseja realizar a eleição.
-3. Selecione a opção 2 para logar como um profissional certificado e aperte 1 para fazer login (usuário: Cert, senha: 54321). Isso permitirá iniciar/finalizar a eleição e mostrar o resultado ao final da eleição.
+3. Selecione a opção 2 para logar como um profissional certificado e aperte 1 para fazer login (usuário: cert, senha: 54321). Isso permitirá iniciar/finalizar a eleição e mostrar o resultado ao final da eleição.
 4. Após iniciar a eleição, aperte 1 no menu principal para logar como eleitor e insira o número do título (títulos disponíveis: `123456789012`, `268888719264`, `638991919941`, `965575671024`).
 5. Digite o número do candidato em que você deseja votar e confirme.
 6. Faça o login como um profissional certificado e aperte 1 para finalizar a eleição.
